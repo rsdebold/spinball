@@ -148,7 +148,7 @@ $( document ).on( "pagecreate", "#connect", function() {
 $.when(deviceReady, jqueryReady, mobileReady).done(function () {
 	$( "#app-container>[data-role='panel']" ).panel({
 		beforeopen: function( event, ui ) {
-			app.setTrafficSwitches();
+			app.setSwitches();
 		},
 		close: function( event, ui ) {
 			/*
