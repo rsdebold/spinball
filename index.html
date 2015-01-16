@@ -1,0 +1,192 @@
+<!doctype html>
+<html>
+<head>
+	<title>SpinBall</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link href="js/jquery/jquery.mobile-1.4.5.min.css" media="screen" rel="stylesheet" type="text/css" />
+		<link href="css/index.css" media="screen" rel="stylesheet" type="text/css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="format-detection" content="telephone=no" />
+	<style type="text/css">
+		html { height: 100% !important;}
+		body { height: 100% !important;}
+		.center-wrapper{ text-align: center; }
+		.center-wrapper * { margin: 0 auto; }
+		.ip {width:40px !important;}
+		#ip-inputs .ui-input-text {
+			width: 40px !important;
+			margin: 2px;
+		}
+		#pw-input .ui-input-text {
+			width: 185px !important;
+		}
+		#ip-inputs, #pw-input {
+			margin-left: auto; 
+			margin-right: auto; 
+			width: 300px;
+		}
+		.custom-corners .ui-bar {
+			-webkit-border-top-left-radius: inherit;
+			border-top-left-radius: inherit;
+			-webkit-border-top-right-radius: inherit;
+			border-top-right-radius: inherit;
+		}
+		.custom-corners .ui-body {
+			border-top-width: 0;
+			-webkit-border-bottom-left-radius: inherit;
+			border-bottom-left-radius: inherit;
+			-webkit-border-bottom-right-radius: inherit;
+			border-bottom-right-radius: inherit;
+		}
+		.custom-size-flipswitch.ui-flipswitch .ui-btn.ui-flipswitch-on {
+			text-indent: -5.9em;
+		}
+		.custom-size-flipswitch.ui-flipswitch .ui-flipswitch-off {
+			text-indent: 0.5em;
+		}
+		.custom-size-flipswitch.ui-flipswitch {
+			width: 8.875em;
+		}
+		.custom-size-flipswitch.ui-flipswitch.ui-flipswitch-active {
+			padding-left: 7em;
+			width: 1.875em;
+		}
+		@media (min-width: 28em) {
+			.ui-field-contain > label + .custom-size-flipswitch.ui-flipswitch {
+			width: 1.875em;
+		}
+		#pitch-type {
+			font-size: 11px !important
+		}
+		#pitch-speed {
+			font-size: 20px !important
+		}
+		#pitchTypeSelect {
+			font-family: Lucida Console, Monaco, monospace !important;
+		}
+	}
+	</style>
+</head>
+<body>
+	<div class="app load-screen">
+		<div id="deviceready" class="blink">
+			<p id="api-init" class="event listening">Initializing Divice: ver .1 alpha</p>
+		</div>
+	</div>
+	<div id="app-container" style="display:none;">
+		<div data-role="header" data-position="fixed" data-theme="a">
+			<a href="#settings" data-icon="gear" data-iconpos="notext">Settings</a>
+			 <div class="center-wrapper">
+				<img border="0" src="img/spinball_logo.png" alt="Logo, SpinBall"/>
+			</div>
+		</div>
+		<div data-role="page" id="connect" data-theme="a" data-dom-cache="false">
+			<div role="main" class="ui-content">
+				<div class="ui-corner-all custom-corners">
+					<div class="ui-bar ui-bar-b center-wrapper">
+						<h3>Connect To A Machine</h3>
+					</div>
+					<div class="ui-body ui-body-a">
+						<p>
+						<div id="ip-inputs">
+							<div class="ui-grid-solo">
+								<div class="ui-block-a">
+									<label for="ip1">Pitching Machine IP address:</label>
+								</div>
+							</div>		
+							<div class="ui-grid-f">
+							    <div class="ui-block-a">&nbsp;</div>
+							    <div class="ui-block-b"><input type="text" name="ip1" id="ip1" maxlength=3 value="192"></div>
+							    <div class="ui-block-c"><input type="text" name="ip2" id="ip2" maxlength=3 value="168"></div>
+							    <div class="ui-block-d"><input type="text" name="ip3" id="ip3" maxlength=3 value="1"></div>
+							    <div class="ui-block-e"><input type="text" name="ip4" id="ip4" maxlength=3 value="199"></div>
+							    <div class="ui-block-f">&nbsp;</div>
+							</div>
+							<div id="pw-input">
+								<input type="password" name="password" id="password" maxlength=10 placeholder="password" value="">
+							</div>
+						</div>
+						<div class="ui-input-btn ui-btn ui-corner-all">Connect
+							<input type="button" data-enhanced="true" id="btnConnect" value="Enhanced">
+						</div>
+						</p>
+					</div>
+				</div>
+			</div><!-- /content -->
+		</div><!-- /page -->
+
+		<div data-role="page" id="control" data-theme="a" data-dom-cache="false">
+			<div role="main" class="ui-content center-wrapper" data-role="none" data-enhance="false">
+				<table>
+					<tr>
+						<td>
+							<input data-role="none" id="pitch-speed" class="knob" data-width="150" data-min=39 data-max=100 data-angleOffset=-125 data-angleArc=250 data-fgColor="black" value="39">
+						</td>
+						<td>
+							<input data-role="none" id="pitch-type" class="knob" data-thickness=.4 data-width="150" data-cursor=10 data-min=0 data-max=12 data-step=1 data-fgColor="#222222" data-thickness=.3 value="0">
+						</td>
+						<td>
+							<input data-role="none" id="pitch-spin" class="knob" data-width="150" data-angleOffset=-125 data-angleArc=250 data-fgColor="red" value="0">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Pitch Speed
+						</td>
+						<td>
+							<div class="ui-field-contain" style="width:160px !important;">
+								<select name="pitchTypeSelect" id="pitchTypeSelect" data-native-menu="false" data-mini="true">
+									<option value=0> rising fastball</option>
+									<option value=1> RH 4 seam fastball</option>
+									<option value=2> RH 2 seam fastball</option>
+									<option value=3> RH screwball</option>
+									<option value=4> LH slider</option>
+									<option value=5> LH curveball</option>
+									<option value=6> sinker</option>
+									<option value=7> RH curveball</option>
+									<option value=8> RH slider</option>
+									<option value=9> LH screwball</option>
+									<option value=10>LH 2 seam fastball</option>
+									<option value=11>LH 4 seam fastball</option>
+									<option value=12>knuckleball</option>
+								</select>
+							</div>
+						</td>
+						<td>
+							Ball Spin
+						</td>
+					</tr>
+				</table>
+					<div style="padding: 1px; border: 3px solid rgb(153, 153, 153); width:125px; height:36px; background-color: rgb(36, 30, 30);">
+						<canvas id="display" width="120" height="34"></canvas>
+					</div>
+			</div>
+		</div>
+
+		<div data-role="panel" data-position-fixed="true" data-display="overlay" data-theme="a" id="settings">
+				<div class="ui-corner-all custom-corners">
+					<div class="ui-bar ui-bar-b">
+						<h3>Settings</h3>
+					</div>
+					<div class="ui-body ui-body-a">
+						<p>
+							<fieldset id="machine-settings" data-role="controlgroup" data-mini="true">
+								<input type="checkbox" data-role="flipswitch" name="machine-mode" id="machine-mode" data-on-text="Baseball" data-off-text="Softball" data-wrapper-class="custom-size-flipswitch" checked>
+								<input type="checkbox" data-role="flipswitch" name="speed-display" id="speed-display" data-on-text="MPH" data-off-text="KPH" data-wrapper-class="custom-size-flipswitch" checked>
+							</fieldset>
+						</p>
+					</div>
+				</div>
+			<a href="#" data-rel="close" class="ui-btn ui-corner-all ui-mini ui-btn-icon-left ui-icon-back">Close</a>
+		</div>
+	</div>
+	<script type="text/javascript" src="cordova.js"></script>
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+	<script src="js/jquery.js"></script>
+	<script src="js/app.js"></script>
+    <script src="js/jquery.knob.js"></script>
+    <script type="text/javascript" src="js/segment-display.js"></script>
+	<script src="js/jquery/jquery.mobile-1.4.5.min.js"></script>
+</body>
+</html>
