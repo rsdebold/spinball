@@ -62,6 +62,7 @@ var mobileReady = $.Deferred();
 
 document.addEventListener('deviceready', function () {
 	app.id = device.uuid;
+	alert(app.id);
 	document.addEventListener("resume", function () {
 		var foo;
 	}, false);
@@ -201,10 +202,8 @@ $.when(deviceReady, jqueryReady, mobileReady).done(function () {
 			}
 		});
 		if ( page == "connect") {
-			app.buildPSCList();
 		}
 		if ( page == "control") {
-			app.drawMap();
 		}
 	});
 	
@@ -222,7 +221,7 @@ $.when(deviceReady, jqueryReady, mobileReady).done(function () {
 		release : function (value) {
 			console.log("type-release : " + value);
 			if ( $("#pitch-spin").val() == "0%" ) {value=12;}
-			$("#pitchTypeSelect").val(value).selectmenu('refresh');
+			//$("#pitchTypeSelect").val(value).selectmenu('refresh');
 		},
 		cancel : function () {
 			console.log("type-cancel : ", this);
