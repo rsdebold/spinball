@@ -43,20 +43,7 @@
     <!-- Plugins -->
 
     <!-- Core plugins -->
-<plugin name="org.apache.cordova.battery-status" source="pgb"/>
-<plugin name="org.apache.cordova.camera" source="pgb"/>
-<plugin name="org.apache.cordova.console" source="pgb"/>
-<plugin name="org.apache.cordova.contacts" source="pgb"/>
-<plugin name="org.apache.cordova.device" source="pgb"/>
-<plugin name="org.apache.cordova.device-motion" source="pgb"/>
-<plugin name="org.apache.cordova.device-orientation" source="pgb"/>
-<plugin name="org.apache.cordova.dialogs" source="pgb"/>
-<plugin name="org.apache.cordova.geolocation" source="pgb"/>
-<plugin name="org.apache.cordova.inappbrowser" source="pgb"/>
-<plugin name="org.apache.cordova.media-capture" source="pgb"/>
-<plugin name="org.apache.cordova.network-information" source="pgb"/>
-<plugin name="org.apache.cordova.splashscreen" source="pgb"/>
-<plugin name="org.apache.cordova.vibration" source="pgb"/>
+
     <!-- Third party plugins -->
     <!-- A list of available plugins are available at https://build.phonegap.com/plugins -->
     <!--
