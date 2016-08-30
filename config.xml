@@ -53,7 +53,6 @@
 <plugin name="org.apache.cordova.dialogs" source="pgb"/>
 <plugin name="org.apache.cordova.geolocation" source="pgb"/>
 <plugin name="org.apache.cordova.inappbrowser" source="pgb"/>
-<plugin name="org.apache.cordova.media" source="pgb"/>
 <plugin name="org.apache.cordova.media-capture" source="pgb"/>
 <plugin name="org.apache.cordova.network-information" source="pgb"/>
 <plugin name="org.apache.cordova.splashscreen" source="pgb"/>
