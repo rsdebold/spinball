@@ -52,7 +52,6 @@
 <plugin name="org.apache.cordova.device-orientation" source="pgb"/>
 <plugin name="org.apache.cordova.dialogs" source="pgb"/>
 <plugin name="org.apache.cordova.geolocation" source="pgb"/>
-<plugin name="org.apache.cordova.globalization" source="pgb"/>
 <plugin name="org.apache.cordova.inappbrowser" source="pgb"/>
 <plugin name="org.apache.cordova.media" source="pgb"/>
 <plugin name="org.apache.cordova.media-capture" source="pgb"/>
